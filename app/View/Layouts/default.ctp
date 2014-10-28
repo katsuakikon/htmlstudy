@@ -21,6 +21,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <html>
 <head>
 	<?php echo $this->Html->charset(); ?>
+	<?php echo $this->Html->script('lib/jquery-1.11.0.min'); ?>
+    <?php echo $this->Html->script('lib/jquery.cookie'); ?>
+    <?php echo $this->Html->script('cookie_config'); ?>
+    
 	<title>
 		<?php echo $cakeDescription ?>:
 		<?php echo $this->fetch('title'); ?>
@@ -40,10 +44,12 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>HTML5 問題集</h1>
+			<h1>Web Test Simurator</h1>
+			<div style="width:100%">
+			<?php echo $this->Html->link('ログアウト', '/Users/logout', array('class' => 'pull-right')); ?>
+		</div>
 		</div>
 		<div id="content">
-
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>

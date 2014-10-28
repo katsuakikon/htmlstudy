@@ -1,0 +1,29 @@
+.pull-right {
+  float: right !important;
+}
+
+fieldset legend {
+	color: #000000;
+	font-size: 120%;
+}
+
+.q_text {
+	font-size: 120%;
+}
+
+input[type=button] {
+	width: 150px;
+	height: 30px;
+	font-size: 100%;
+	padding: 0;
+}
+
+.ok {
+	font-size: 120%;
+	color: #0000FF;
+}
+
+.miss {
+	font-size: 120%;
+	color: #FF0000;
+}

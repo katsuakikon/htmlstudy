@@ -5,10 +5,10 @@ var answerArray = JSON.parse('<?php echo $answerArray ?>');
 <?php echo h($question) ?>
 </p>
 <fieldset>
-	<legend>1つ選択してください。</legend>
-	<div class="radio">
+	<legend>該当項目を選択してください。</legend>
+	<div class="checkbox">
 <?php foreach ($detail as $k => $v): ?>
-<input type="radio" name="answer" value="<?php echo $v['QDetail']['id'] ?>">
+<input type="checkbox" name="answer" value="<?php echo $v['QDetail']['id'] ?>">
 <label>&nbsp;<?php echo $k+1 ?>.&nbsp;<?php echo h($v['QDetail']['question']) ?>
 </label>
 <?php endforeach; ?>
@@ -19,4 +19,4 @@ var answerArray = JSON.parse('<?php echo $answerArray ?>');
 <div id="description" style="display: none;">
 <?php echo h($description) ?>
 </div>
-<?php echo $this->Html->script('check_radio'); ?>
+<?php echo $this->Html->script('check_cbox'); ?>
