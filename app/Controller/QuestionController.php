@@ -10,6 +10,13 @@ App::uses('AppController', 'Controller');
 class QuestionController extends AppController {
 
 /**
+ * Components
+ *
+ * @var array
+ */
+	public $components = array('Paginator', 'Session', 'Cookie');
+
+/**
  * Model
  *
  * @var array
@@ -31,15 +38,42 @@ class QuestionController extends AppController {
 	}
 
 /**
- * Components
+ * init method
  *
- * @var array
+ * @return void
  */
-	public $components = array('Paginator', 'Session');
+	public function init($id = null) {
+		$this->Cookie->destroy();
+		
+		// 選択した問題集を取得
+		$base = $this->QBase->find('all',array(
+			'conditions' => array('QBase.class_id' => $id)));
+		$baseArray = array();
+		$qCount = 0;
+		foreach ($base as $k => $v) {
+			array_push($baseArray, $v['QBase']['id']);
+			$qCount++;
+		}
+
+		$this->QClass->recursive = 0;
+		$this->set('qClasses', $this->Paginator->paginate());
+
+		$this->Cookie->write('q_count', $qCount, false, '24 hour');
+		$this->Cookie->write('q_array', $baseArray, false, '24 hour');
+
+		$this->redirect(array('controller' => 'Question', 'action' => 'input/0'));
+	}
 
 	public function input($index = null) {
+
+		// 出題indexはCookieから取得
+		$q_array = $this->Cookie->read('q_array');
+		$id = $q_array[$index];
+
+		$this->set('next_index', $index + 1);
+
 		$base = $this->QBase->find('first',array(
-			'conditions' => array('QBase.id' => $index)));
+			'conditions' => array('QBase.id' => $id)));
 
 		$type = $base['QBase']['type_id'];
 		$question = $base['QBase']['question'];
@@ -51,7 +85,7 @@ class QuestionController extends AppController {
 		$this->set('hint', $hint);
 
 		$detail = $this->QDetail->find('all',array(
-			'conditions' => array('QDetail.parent_id' => $index)));
+			'conditions' => array('QDetail.parent_id' => $id)));
 
 		$this->set('detail', $detail);
 
@@ -67,6 +101,10 @@ class QuestionController extends AppController {
 		} else {
 			$this->render('checkbox');
 		}
+		
+	}
+
+	public function result() {
 		
 	}
 

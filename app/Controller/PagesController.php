@@ -30,6 +30,17 @@ App::uses('AppController', 'Controller');
  */
 class PagesController extends AppController {
 
+	public $userRole;
+
+	public function isAuthorized($user) {
+		if (isset($user['role'])) {
+			$this->userRole = $user['role'];
+			return true;
+		}
+		// デフォルトは拒否
+		return false;
+	}
+
 /**
  * This controller does not use a model
  *
@@ -65,8 +76,15 @@ class PagesController extends AppController {
 		}
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 
+		// role分岐
+		$rPath = 'Question';
+		
+		if ($this->userRole === 'admin') {
+			$rPath = 'Admin';
+		}
+
 		try {
-			$this->render(implode('/', $path));
+			$this->redirect(array('controller' => $rPath, 'action' => 'index'));
 		} catch (MissingViewException $e) {
 			if (Configure::read('debug')) {
 				throw $e;
