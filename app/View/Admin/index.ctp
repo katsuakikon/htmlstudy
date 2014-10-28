@@ -10,19 +10,19 @@
 	<tbody>
 	<tr>
 		<td>試験タイトル作成</td>
-		<td><a class="result" href="/htmlstudy/QClasses/index">編集</a></td>
+		<td><a href="<?php echo $this->Html->url('/QClasses/index'); ?>">編集</a></td>
 	</tr>
 	<tr>
 		<td>カテゴリ作成</td>
-		<td><a class="result" href="/htmlstudy/QCategories/index">編集</a></td>
+		<td><a href="<?php echo $this->Html->url('/QCategories/index'); ?>">編集</a></td>
 	</tr>
 	<tr>
 		<td>問題作成</td>
-		<td><a class="result" href="/htmlstudy/QBases/index">編集</a></td>
+		<td><a href="<?php echo $this->Html->url('/QBases/index'); ?>">編集</a></td>
 	</tr>
 	<tr>
 		<td>問題詳細作成</td>
-		<td><a class="result" href="/htmlstudy/QDetails/index">編集</a></td>
+		<td><a href="<?php echo $this->Html->url('/QDetails/index'); ?>">編集</a></td>
 	</tr>
 	</tbody>
 	</table>

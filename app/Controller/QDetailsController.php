@@ -16,13 +16,23 @@ class QDetailsController extends AppController {
 		// デフォルトは拒否
 		return false;
 	}
-	
+
 /**
  * Components
  *
  * @var array
  */
 	public $components = array('Paginator', 'Session');
+
+/**
+ * Model
+ *
+ * @var array
+ */
+	public $uses = array(
+		'QDetail',
+		'QBase'
+	);
 
 /**
  * index method
@@ -63,6 +73,13 @@ class QDetailsController extends AppController {
 			} else {
 				$this->Session->setFlash(__('The q detail could not be saved. Please, try again.'));
 			}
+		} else {
+			$parents = $this->QBase->find('list',
+				array(
+					'fields' => array('id', 'question'),
+					'order' => array('QBase.id asc')));
+
+			$this->set('parents', $parents);
 		}
 	}
 
@@ -87,6 +104,13 @@ class QDetailsController extends AppController {
 		} else {
 			$options = array('conditions' => array('QDetail.' . $this->QDetail->primaryKey => $id));
 			$this->request->data = $this->QDetail->find('first', $options);
+
+			$parents = $this->QBase->find('list',
+				array(
+					'fields' => array('id', 'question'),
+					'order' => array('QBase.id asc')));
+
+			$this->set('parents', $parents);
 		}
 	}
 

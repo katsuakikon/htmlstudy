@@ -30,7 +30,14 @@ var qindex = JSON.parse('<?php echo $next_index ?>');
 <?php echo h($description) ?>
 </div>
 
-<div id="next_button" class="pull-right"></div>
+<div id="next_button" class="pull-right">
+	<div id="result_link" style="display: none;">
+		<a href="<?php echo $this->Html->url('/Question/result'); ?>">結果を見る</a>
+	</div>
+	<div id="next_link" style="display: none;">
+		<a href="<?php echo $this->Html->url('/Question/input/'.$next_index); ?>">次の問題へ</a>
+	</div>
+</div>
 
 </div>
 <?php echo $this->Html->script('question'); ?>

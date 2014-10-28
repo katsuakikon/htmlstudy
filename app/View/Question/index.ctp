@@ -1,3 +1,8 @@
+<script>
+$(function() {
+	cookieSet(scoreKey, 0);
+});
+</script>
 <div class="qClasses">
 	<h1>資格試験問題集</h1>
 	<table cellpadding="0" cellspacing="0">
