@@ -50,5 +50,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 		<li><?php echo $this->Html->link(__('New Q Base'), array('action' => 'add')); ?></li>
+		<li><a href="<?php echo $this->Html->url('/Admin'); ?>">一覧に戻る</a></li>
 	</ul>
 </div>
