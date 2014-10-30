@@ -77,7 +77,7 @@ class QDetailsController extends AppController {
 			$parents = $this->QBase->find('list',
 				array(
 					'fields' => array('id', 'question'),
-					'order' => array('QBase.id asc')));
+					'order' => array('QBase.id desc')));
 
 			$this->set('parents', $parents);
 		}

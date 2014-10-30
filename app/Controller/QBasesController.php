@@ -77,14 +77,14 @@ class QBasesController extends AppController {
 			$list = $this->QClass->find('list',
 				array(
 					'fields' => array('id', 'name'),
-					'order' => array('QClass.id asc')));
+					'order' => array('QClass.id desc')));
 
 			$this->set('classes', $list);
 
 			$categories = $this->QCategory->find('list',
 				array(
 					'fields' => array('id', 'name'),
-					'order' => array('QCategory.id asc')));
+					'order' => array('QCategory.id desc')));
 
 			$this->set('categories', $categories);
 

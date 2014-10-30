@@ -23,6 +23,7 @@ class QuestionController extends AppController {
  */
 	public $uses = array(
 		'QClass',
+		'QCategory',
 		'QBase',
 		'QDetail'
 	);
@@ -72,6 +73,7 @@ class QuestionController extends AppController {
 
 		$this->set('next_index', $index + 1);
 
+		// 問題設定
 		$base = $this->QBase->find('first',array(
 			'conditions' => array('QBase.id' => $id)));
 
@@ -79,22 +81,28 @@ class QuestionController extends AppController {
 		$question = $base['QBase']['question'];
 		$description = $base['QBase']['description'];
 		$hint = $base['QBase']['hint'];
+		$class_id = $base['QBase']['class_id'];
 
 		$this->set('question', $question);
 		$this->set('description', $description);
 		$this->set('hint', $hint);
 
+		// 問題詳細設定
 		$detail = $this->QDetail->find('all',array(
 			'conditions' => array('QDetail.parent_id' => $id)));
-
 		$this->set('detail', $detail);
-
+		// 回答設定
 		$answerArray = array();
 		foreach ($detail as $key => $value) {
 			array_push($answerArray, $value['QDetail']['answer']);
 		}
-
 		$this->set('answerArray', json_encode($answerArray));
+
+		// カテゴリー設定
+		$categories = $this->QCategory->find('first',array(
+			'conditions' => array('QCategory.id' => $class_id)));
+		$category = $categories['QCategory']['name'];
+		$this->set('category', $category);
 
 		if ($type == 1) {
 			$this->render('radio');

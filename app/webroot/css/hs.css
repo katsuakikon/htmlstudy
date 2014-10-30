@@ -1,6 +1,6 @@
 #q_contents {
 	width: 80%;
-	margin: 10px auto 10px;
+	margin: 0 auto 10px;
 }
 
 #result {
@@ -10,7 +10,14 @@
 }
 
 .pull-right {
-  float: right !important;
+	float: right;
+	margin-bottom: 10px; 
+}
+
+.pull-right p {
+	text-align: right;
+	margin: 2px 0;
+	padding: 0 0;
 }
 
 fieldset legend {
@@ -19,7 +26,9 @@ fieldset legend {
 }
 
 .q_text {
+	width:100%;
 	font-size: 120%;
+	clear:right;
 }
 
 input[type=button] {
