@@ -14,7 +14,7 @@ var qindex = JSON.parse('<?php echo $next_index ?>');
 
     <div>
         <p class="q_text">
-            <?php echo h($question) ?>
+            <?php echo nl2br(h($question)) ?>
         </p>
         <fieldset>
             <legend>該当項目を選択してください。</legend>
@@ -23,7 +23,7 @@ var qindex = JSON.parse('<?php echo $next_index ?>');
                 <input type="checkbox" name="answer" value="<?php echo $v['QDetail']['id'] ?>">
                 <label>&nbsp;
                     <?php echo $k+1 ?>.&nbsp;
-                    <?php echo h($v[ 'QDetail'][ 'question']) ?>
+                    <?php echo nl2br(h($v[ 'QDetail'][ 'question'])) ?>
                 </label>
                 <?php endforeach; ?>
             </div>
@@ -34,7 +34,7 @@ var qindex = JSON.parse('<?php echo $next_index ?>');
     </div>
     <div id="displayAns"></div>
     <div id="description" style="display: none;">
-        <?php echo h($description) ?>
+        <?php echo nl2br(h($description)) ?>
     </div>
 
     <div id="next_button" class="pull-right">
